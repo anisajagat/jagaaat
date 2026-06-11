@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio — Anisa Jagat Septiani</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Special+Elite&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f0e8;
+    --warm-tan: #c9a882;
+    --brown: #7a5c3f;
+    --dark-brown: #3b2a1a;
+    --sage: #7c9e7f;
+    --dusty-blue: #7a9bb5;
+    --gold: #c9a84c;
+    --lime: #9ac43b;
+    --teal: #4a8f87;
+    --paper: #faf8f2;
+    --lined-blue: #b8cfe8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Patrick Hand', cursive;
+    background: var(--dark-brown);
+    color: var(--dark-brown);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ─────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    background: rgba(58, 42, 26, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--warm-tan);
+    transition: all 0.3s ease;
+  }
+  nav.scrolled { padding: 8px 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+
+  .nav-logo {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-logo span { color: var(--warm-tan); }
+  .nav-logo:hover { color: var(--warm-tan); }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    border: 1.5px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--warm-tan);
+    color: var(--dark-brown);
+    border-color: var(--warm-tan);
+    transform: translateY(-1px);
+  }
+
+  .nav-ig {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--warm-tan);
+    text-decoration: none;
+    border: 1.5px solid var(--warm-tan);
+    padding: 5px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .nav-ig:hover { background: var(--warm-tan); color: var(--dark-brown); }
+
+  /* ── SECTIONS BASE ───────────────────────────── */
+  section {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── HERO ────────────────────────────────────── */
+  #hero {
+    background: linear-gradient(135deg, #c4b09a 0%, #a89278 40%, #8a7362 100%);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('background1.jpeg') center/cover no-repeat;
+    filter: sepia(30%) brightness(0.55) saturate(0.8);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-top: 80px;
+  }
+
+  .hero-title {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(5rem, 14vw, 13rem);
+    font-weight: 700;
+    color: #f5edcb;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    text-shadow: 4px 6px 20px rgba(0,0,0,0.35);
+    animation: fadeSlideUp 1s ease 0.2s both;
+  }
+
+  .hero-name {
+    font-family: 'Special Elite', cursive;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    color: rgba(245,240,232,0.85);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    animation: fadeSlideUp 1s ease 0.5s both;
+  }
+
+  /* Polaroid cards */
+  .polaroid {
+    background: white;
+    padding: 10px 10px 28px;
+    box-shadow: 4px 6px 20px rgba(0,0,0,0.4);
+    position: absolute;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .polaroid:hover { transform: scale(1.06) rotate(0deg) !important; z-index: 10; }
+  .polaroid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .polaroid-tape {
+    position: absolute;
+    width: 60px; height: 22px;
+    background: rgba(210,190,140,0.6);
+    transform: rotate(-5deg);
+  }
+
+  .polaroid-1 {
+    width: 180px; height: 200px;
+    top: 120px; left: 60px;
+    transform: rotate(-8deg);
+  }
+  .polaroid-1 .polaroid-tape { top: -10px; left: 20px; transform: rotate(-5deg); }
+
+  .polaroid-2 {
+    width: 170px; height: 190px;
+    bottom: 60px; right: 60px;
+    transform: rotate(7deg);
+  }
+  .polaroid-2 .polaroid-tape { top: -10px; right: 20px; transform: rotate(5deg); }
+
+  /* ── ABOUT ────────────────────────────────────── */
+  #about {
+    background: linear-gradient(160deg, #9e8272 0%, #7a6354 100%);
+    padding: 100px 80px;
+    gap: 60px;
+  }
+
+  .about-bg {
+    position: absolute; inset: 0;
+    background: url('background2.jpeg') center/cover no-repeat;
+    filter: brightness(0.4) saturate(0.5);
+  }
+
+  .about-inner {
+    position: relative; z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 60px;
+  }
+
+  .about-text-col { flex: 1; }
+
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1;
+    margin-bottom: 28px;
+    animation: fadeSlideUp 0.8s ease both;
+  }
+
+  .about-title { color: var(--cream); }
+
+  .about-body {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.88);
+    line-height: 2;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    max-width: 480px;
+  }
+
+  .about-photo-col {
+    position: relative;
+    flex-shrink: 0;
+    width: 300px;
+    height: 340px;
+  }
+
+  .about-polaroid {
+    position: absolute;
+    background: white;
+    padding: 10px 10px 30px;
+    box-shadow: 6px 8px 28px rgba(0,0,0,0.5);
+    transform: rotate(3deg);
+    transition: transform 0.3s;
+    cursor: pointer;
+    top: 20px; left: 20px;
+    width: 260px;
+  }
+  .about-polaroid:hover { transform: rotate(0deg) scale(1.04); }
+  .about-polaroid img { width: 100%; height: 230px; object-fit: cover; display: block; }
+
+  .green-backing {
+    position: absolute;
+    top: 0; left: 0;
+    width: 260px; height: 290px;
+    background: var(--sage);
+    transform: rotate(-2deg);
+  }
+
+  /* ── PENDIDIKAN ─────────────────────────────── */
+  #pendidikan {
+    background: #e8eff6;
+    padding: 100px 60px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .pendidikan-bg {
+    position: absolute; inset: 0;
+    background: url('background3.jpeg') center/cover no-repeat;
+    filter: brightness(0.5) saturate(0.6) hue-rotate(200deg);
+  }
+
+  .pendidikan-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+  }
+
+  .paper-sheet {
+    background: repeating-linear-gradient(
+      transparent, transparent 28px,
+      var(--lined-blue) 28px, var(--lined-blue) 30px
+    );
+    background-color: #fafcff;
+    padding: 30px 40px 40px;
+    position: relative;
+    flex: 1;
+  }
+  .paper-sheet::before {
+    content: '';
+    position: absolute;
+    left: 60px; top: 0; bottom: 0;
+    width: 2px;
+    background: rgba(220,100,100,0.4);
+  }
+
+  .pendidikan-title { color: #4a9ec4; }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+    margin: 24px 0 20px;
+    font-family: 'Special Elite', cursive;
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+    color: var(--dark-brown);
+  }
+  .edu-entry .year { font-weight: bold; font-size: 0.9rem; color: var(--brown); }
+  .edu-entry .school { margin-top: 4px; }
+
+  .edu-body {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    line-height: 2;
+    color: #333;
+    text-transform: uppercase;
+    margin-top: 10px;
+    padding-left: 30px;
+  }
+
+  .pendidikan-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
+    padding-top: 80px;
+  }
+
+  .stacked-polaroid {
+    background: white;
+    padding: 8px 8px 22px;
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  .stacked-polaroid:nth-child(1) { transform: rotate(-3deg); }
+  .stacked-polaroid:nth-child(2) { transform: rotate(2deg); margin-left: 30px; }
+  .stacked-polaroid:hover { transform: rotate(0deg) scale(1.05) !important; z-index: 10; }
+  .stacked-polaroid img { width: 200px; height: 140px; object-fit: cover; display: block; }
+
+  /* ── KEMAMPUAN ───────────────────────────────── */
+  #kemampuan {
+    padding: 100px 60px;
+  }
+
+  .kemampuan-bg {
+    position: absolute; inset: 0;
+    background: url('background4.jpeg') center/cover no-repeat;
+    filter: brightness(0.45) saturate(0.7);
+  }
+
+  .kemampuan-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .kemampuan-title { color: #a8e060; }
+
+  .torn-paper {
+    background: repeating-linear-gradient(
+      transparent, transparent 26px,
+      #dde8f0 26px, #dde8f0 27px
+    );
+    background-color: #f8f9fa;
+    padding: 28px 36px 36px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 2%, 98% 98%, 2% 100%, 1% 50%, 0 25%);
+    flex: 1;
+  }
+
+  .torn-paper h3 {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark-brown);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .skill-list li {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #333;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 8px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .skill-list li.visible { opacity: 1; transform: none; }
+  .skill-list li::before {
+    content: '✦';
+    color: var(--brown);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  /* ── PENGALAMAN ──────────────────────────────── */
+  #pengalaman {
+    padding: 100px 60px;
+    flex-direction: column;
+  }
+
+  .pengalaman-bg {
+    position: absolute; inset: 0;
+    background: url('background5.jpeg') center/cover no-repeat;
+    filter: brightness(0.4) saturate(0.5) sepia(20%);
+  }
+
+  .pengalaman-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+  }
+
+  .pengalaman-title { color: #d4aa55; }
+
+  .notebook-paper {
+    background: repeating-linear-gradient(
+      transparent, transparent 24px,
+      #c8daf0 24px, #c8daf0 25px
+    );
+    background-color: #fbfcff;
+    padding: 28px 28px 36px 48px;
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+  }
+  .notebook-paper::before {
+    content: '';
+    position: absolute;
+    left: 38px; top: 0; bottom: 0;
+    width: 2px;
+    background: rgba(220,100,100,0.35);
+  }
+
+  .exp-item { margin-bottom: 28px; }
+  .exp-title {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.88rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--dark-brown);
+    margin-bottom: 8px;
+  }
+  .exp-body {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    line-height: 1.9;
+    color: #444;
+    text-transform: uppercase;
+  }
+  .exp-number {
+    display: inline-block;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-right: 6px;
+  }
+
+  /* ── PROJEK ──────────────────────────────────── */
+  #projek {
+    padding: 100px 60px;
+    flex-direction: column;
+  }
+
+  .projek-bg {
+    position: absolute; inset: 0;
+    background: url('background6.jpeg') center/cover no-repeat;
+    filter: brightness(0.45) saturate(0.6) sepia(10%);
+  }
+
+  .projek-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 60px;
+  }
+
+  .projek-title { color: #f5b842; }
+
+  .projek-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+  }
+
+  .projek-card {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    padding: 28px;
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s, background 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .projek-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.12);
+  }
+
+  .projek-card-photo {
+    background: white;
+    padding: 8px 8px 22px;
+    box-shadow: 4px 4px 16px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+    transform: rotate(-1.5deg);
+    transition: transform 0.3s;
+    display: inline-block;
+  }
+  .projek-card:hover .projek-card-photo { transform: rotate(0deg); }
+  .projek-card-photo img { width: 100%; height: 180px; object-fit: cover; display: block; }
+
+  .projek-card-title {
+    font-family: 'Caveat', cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #f5b842;
+    margin-bottom: 10px;
+  }
+
+  .projek-card-torn {
+    background: repeating-linear-gradient(transparent, transparent 22px, #ccd9ea 22px, #ccd9ea 23px);
+    background-color: #fafcff;
+    padding: 16px 20px;
+    clip-path: polygon(0 0, 100% 3%, 97% 100%, 3% 97%);
+    margin-top: 10px;
+  }
+  .projek-card-body {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    line-height: 1.9;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  /* ── KONTAK ──────────────────────────────────── */
+  #kontak {
+    padding: 100px 60px;
+    justify-content: center;
+  }
+
+  .kontak-bg {
+    position: absolute; inset: 0;
+    background: url('anisa6.jpeg') center/cover no-repeat;
+    filter: brightness(0.4) saturate(0.5) hue-rotate(200deg);
+  }
+
+  .kontak-inner {
+    position: relative; z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .kontak-photo {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .kontak-polaroid-frame {
+    background: white;
+    padding: 10px 10px 30px;
+    box-shadow: 6px 8px 24px rgba(0,0,0,0.5);
+    transform: rotate(-3deg);
+    width: 260px;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  .kontak-polaroid-frame:hover { transform: rotate(0deg) scale(1.04); }
+  .kontak-polaroid-frame img { width: 240px; height: 300px; object-fit: cover; display: block; }
+
+  .denim-star {
+    position: absolute;
+    top: -30px; left: -40px;
+    font-size: 3.5rem;
+    filter: drop-shadow(2px 3px 8px rgba(0,0,0,0.4));
+  }
+
+  .kontak-card {
+    background: repeating-linear-gradient(transparent, transparent 26px, #b8cfe8 26px, #b8cfe8 27px);
+    background-color: #fafcff;
+    padding: 30px 40px 50px;
+    flex: 1;
+    position: relative;
+    clip-path: polygon(0 2%, 98% 0, 100% 98%, 2% 100%, 0 60%, 1% 30%);
+  }
+
+  .kontak-title {
+    font-family: 'Special Elite', cursive;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: bold;
+    color: var(--dark-brown);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .kontak-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-family: 'Special Elite', cursive;
+    font-size: 0.88rem;
+    color: #333;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .kontak-item:hover { opacity: 0.7; }
+
+  .kontak-icon {
+    width: 44px; height: 44px;
+    border: 2px solid var(--dark-brown);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .red-bow {
+    position: absolute;
+    top: -18px; right: 60px;
+    font-size: 2.5rem;
+  }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--dark-brown);
+    text-align: center;
+    padding: 24px;
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--warm-tan);
+    letter-spacing: 2px;
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-left.visible { opacity: 1; transform: none; }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-right.visible { opacity: 1; transform: none; }
+
+  /* floating sticker deco */
+  .deco-float {
+    animation: float 4s ease-in-out infinite;
+    display: inline-block;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+  }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.6);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── MOBILE ──────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 10px 20px; }
+    .nav-links { display: none; }
+    .about-inner, .kemampuan-inner, .pengalaman-inner, .kontak-inner { flex-direction: column; gap: 30px; padding: 20px; }
+    .pendidikan-inner { flex-direction: column; }
+    .projek-grid { grid-template-columns: 1fr; }
+    .polaroid-1, .polaroid-2 { width: 120px; height: 140px; }
+    section { padding: 80px 20px 40px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">anisa<span>js</span></a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#pendidikan">Pendidikan</a></li>
+    <li><a href="#kemampuan">Kemampuan</a></li>
+    <li><a href="#pengalaman">Pengalaman</a></li>
+    <li><a href="#projek">Projek</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <a href="https://instagram.com/qshaniia" class="nav-ig" target="_blank">@qshaniia</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Polaroid left -->
+  <div class="polaroid polaroid-1" style="z-index:3">
+    <div class="polaroid-tape"></div>
+    <img src="anisa12.jpeg" alt="Anisa photo 1">
+  </div>
+
+  <!-- Polaroid right -->
+  <div class="polaroid polaroid-2" style="z-index:3">
+    <div class="polaroid-tape" style="transform:rotate(5deg); right:10px; top:-10px"></div>
+    <img src="anisa12.jpeg" alt="Anisa photo 2">
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">portofolio</h1>
+    <p class="hero-name">Anisa Jagat Septiani</p>
+  </div>
+
+  <div class="scroll-hint">↓ scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-bg"></div>
+  <div class="about-inner">
+    <div class="about-text-col reveal-left">
+      <h2 class="section-title about-title">siapa<br>saya?</h2>
+      <p class="about-body">
+        Perkenalkan, nama saya Anisa Jagat Septiani.
+        Saya adalah lulusan SMA PGRI 22 Serpong
+        jurusan IPA yang terbiasa melihat sesuatu
+        dengan rasa ingin tahu yang tinggi.
+        Buat saya, belajar bukan cuma soal nilai,
+        tapi tentang memahami dan mencoba hal baru.
+        Saya mungkin masih di tahap awal, tapi saya
+        siap berkembang dan terus belajar jadi versi
+        diri yang lebih baik.
+      </p>
+    </div>
+
+    <div class="about-photo-col reveal-right">
+      <div class="green-backing"></div>
+      <div class="about-polaroid">
+        <img src="anisa2.jpeg" alt="Anisa">
+      </div>
+      <!-- bear sticker -->
+      <div class="deco-float" style="position:absolute; top:-30px; right:-10px; font-size:2.8rem;">🧸</div>
+    </div>
+  </div>
+</section>
+
+<!-- PENDIDIKAN -->
+<section id="pendidikan">
+  <div class="pendidikan-bg"></div>
+  <div class="pendidikan-inner">
+    <div class="paper-sheet reveal-left">
+      <h2 class="section-title pendidikan-title">pendidikan<br>saya</h2>
+      <div class="edu-grid">
+        <div class="edu-entry">
+          <div class="year">2014 – 2020</div>
+          <div class="school">SDN Sampora 02</div>
+        </div>
+        <div class="edu-entry">
+          <div class="year">2020 – 2023</div>
+          <div class="school">SMPN 01 Cisauk</div>
+        </div>
+        <div class="edu-entry" style="grid-column: span 2; text-align:center">
+          <div class="year">2023 – 2026</div>
+          <div class="school">SMA PGRI 22 Serpong</div>
+        </div>
+      </div>
+      <p class="edu-body">
+        Saya menempuh pendidikan dasar di SD, yang menjadi tahap awal
+        dalam membangun kemampuan dasar seperti membaca, menulis, dan
+        berhitung. Setelah itu, saya melanjutkan ke jenjang SMP di mana
+        saya mulai mempelajari berbagai mata pelajaran dengan lebih luas.
+        Selanjutnya, saya menyelesaikan pendidikan di SMA Jurusan IPA,
+        yang memberikan pemahaman lebih mendalam dalam bidang sains seperti
+        biologi, kimia, dan fisika, serta melatih pola pikir logis,
+        analitis, dan sistematis.
+      </p>
+    </div>
+
+    <div class="pendidikan-photos reveal-right">
+      <div class="stacked-polaroid">
+        <img src="background3.jpeg" alt="Sekolah 1">
+      </div>
+      <div class="stacked-polaroid">
+        <img src="anisa3.jpeg" alt="Sekolah 2">
+      </div>
+      <!-- butterfly sticker -->
+      <div class="deco-float" style="font-size:2.5rem; text-align:right">🦋</div>
+    </div>
+  </div>
+</section>
+
+<!-- KEMAMPUAN -->
+<section id="kemampuan">
+  <div class="kemampuan-bg"></div>
+  <div class="kemampuan-inner">
+    <div class="reveal-left" style="flex-shrink:0">
+      <h2 class="section-title kemampuan-title">kemampuan<br>saya</h2>
+      <!-- flower sticker -->
+      <div class="deco-float" style="font-size:3rem; margin-top:20px">🌸</div>
+    </div>
+
+    <div class="torn-paper reveal-right">
+      <h3>Apa yang Bisa Saya Berikan</h3>
+      <ul class="skill-list">
+        <li>Mampu Mengatur Waktu</li>
+        <li>Mampu Bekerja Sama Dengan Tim</li>
+        <li>Mampu Berkomunikasi Dengan Baik</li>
+        <li>Mampu Menyelesaikan Tugas Dengan Tepat Waktu</li>
+        <li>Mampu Mengerjakan Sesuatu Dengan Rasa Tanggung Jawab</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PENGALAMAN -->
+<section id="pengalaman">
+  <div class="pengalaman-bg"></div>
+  <div class="pengalaman-inner">
+    <div class="reveal-left" style="flex-shrink:0; padding-right:10px">
+      <h2 class="section-title pengalaman-title">pengalaman<br>saya</h2>
+      <!-- bow sticker -->
+      <div class="deco-float" style="font-size:3rem; margin-top:16px">🎀</div>
+    </div>
+
+    <div class="notebook-paper reveal-right">
+      <div class="exp-item">
+        <div class="exp-title"><span class="exp-number">1.</span> Wakil Ketua Organisasi</div>
+        <p class="exp-body">
+          Saya memiliki pengalaman sebagai wakil ketua dalam organisasi.
+          Dalam peran ini, saya membantu ketua dalam mengoordinasikan
+          anggota, memastikan setiap tugas berjalan dengan baik, serta
+          ikut terlibat dalam pengambilan keputusan.
+        </p>
+      </div>
+      <div class="exp-item">
+        <div class="exp-title"><span class="exp-number">2.</span> Moderator Acara</div>
+        <p class="exp-body">
+          Saya bertugas memandu jalannya acara agar tetap terarah dan
+          sesuai susunan yang telah ditentukan. Dalam peran ini, saya
+          belajar untuk berbicara dengan jelas, menjaga suasana tetap
+          kondusif, serta membangun komunikasi yang baik antara
+          pembicara dan peserta.
+        </p>
+      </div>
+      <!-- star sticker -->
+      <div class="deco-float" style="position:absolute; top:-20px; right:30px; font-size:2.5rem;">⭐</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJEK -->
+<section id="projek">
+  <div class="projek-bg"></div>
+  <div class="projek-inner">
+    <h2 class="section-title projek-title reveal">projek saya</h2>
+    <div class="projek-grid">
+
+      <div class="projek-card reveal">
+        <div class="projek-card-photo">
+          <img src="anisa4.jpeg" alt="Projek HUT RI">
+        </div>
+        <div class="projek-card-title">projek pertama</div>
+        <div class="projek-card-torn">
+          <p class="projek-card-body">
+            Dalam peringatan HUT Republik Indonesia, di lingkungan
+            masyarakat saya pernah dipercaya untuk membawakan acara
+            sebagai moderator. Saya berperan mengarahkan jalannya
+            kegiatan, mulai dari pembukaan, perlombaan, hingga
+            penutupan, agar tetap tertata dan berjalan lancar.
+          </p>
+        </div>
+      </div>
+
+      <div class="projek-card reveal" style="transition-delay: 0.2s">
+        <div class="projek-card-photo">
+          <img src="anisa5.jpeg" alt="Projek Organisasi">
+        </div>
+        <div class="projek-card-title">projek kedua</div>
+        <div class="projek-card-torn">
+          <p class="projek-card-body">
+            Dalam kegiatan lainnya, saya juga membantu ketua dalam
+            mengoordinasikan persiapan hingga pelaksanaan kegiatan,
+            seperti membagi tugas kepada anggota, memastikan setiap
+            bagian berjalan sesuai rencana, serta ikut memantau
+            jalannya acara.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="kontak-bg"></div>
+  <div class="kontak-inner">
+
+    <div class="kontak-photo reveal-left">
+      <div class="denim-star">⭐</div>
+      <div class="kontak-polaroid-frame">
+        <img src="anisa6.jpeg" alt="Anisa kontak">
+      </div>
+    </div>
+
+    <div class="kontak-card reveal-right">
+      <div class="red-bow">🎀</div>
+      <div class="kontak-title">kontak<br>saya</div>
+      <a href="tel:+62858196005178" class="kontak-item">
+        <div class="kontak-icon">📞</div>
+        +62 858 1960 5178
+      </a>
+      <a href="mailto:anisajagatseptianix3@gmail.com" class="kontak-item">
+        <div class="kontak-icon">✉️</div>
+        anisajagatseptianix3@gmail.com
+      </a>
+      <a href="https://instagram.com/qshaniia" class="kontak-item" target="_blank">
+        <div class="kontak-icon">📷</div>
+        @qshaniia
+      </a>
+      <!-- zebra sticker -->
+      <div class="deco-float" style="position:absolute; bottom:10px; right:20px; font-size:2.2rem;">🦓</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 · Anisa Jagat Septiani · @qshaniia
+</footer>
+
+<script>
+  // ── Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+
+    // Active nav link
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // ── Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // ── Skill list staggered reveal
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const items = e.target.querySelectorAll('.skill-list li');
+        items.forEach((li, i) => {
+          setTimeout(() => li.classList.add('visible'), i * 120);
+        });
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const skillSection = document.querySelector('.torn-paper');
+  if (skillSection) skillObs.observe(skillSection);
+
+  // ── Smooth nav click
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── Polaroid tilt on hover (slight random tilt)
+  document.querySelectorAll('.polaroid, .stacked-polaroid, .projek-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / rect.width;
+      const dy = (e.clientY - cy) / rect.height;
+      card.style.transform = `rotate(${dx * 6}deg) translateY(-4px) scale(1.04)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+</script>
+</body>
+</html>
